@@ -1,0 +1,9 @@
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.reactlibrary">
+          
+  <meta-data android:name="DEFAULT_MESSAGE_HANDLER_KEY"
+        android:value="com.snapscreen.reactnative.ReactNativeMessageHandler" />
+
+</manifest>
+  

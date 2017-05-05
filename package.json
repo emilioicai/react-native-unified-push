@@ -1,0 +1,23 @@
+
+{
+  "name": "react-native-unified-push",
+  "version": "0.0.1",
+  "description": "",
+  "repository": "https://github.com/emilioicai/react-native-unified-push",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "ups",
+    "push",
+    "push notifications",
+    "aerogear"
+  ],
+  "author": "Emilio Rodriguez",
+  "license": "ISC",
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  }
+}
