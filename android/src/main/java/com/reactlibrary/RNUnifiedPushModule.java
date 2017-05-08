@@ -11,7 +11,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
-import com.snapscreen.BuildConfig;
+import com.reactlibrary.BuildConfig;
 import java.net.URI;
 import org.jboss.aerogear.android.unifiedpush.MessageHandler;
 import org.jboss.aerogear.android.unifiedpush.PushRegistrar;
@@ -19,11 +19,7 @@ import org.jboss.aerogear.android.unifiedpush.RegistrarManager;
 import org.jboss.aerogear.android.unifiedpush.fcm.AeroGearFCMPushConfiguration;
 
 public class RNUnifiedPushModule extends ReactContextBaseJavaModule {
-
-  private final String VARIANT_ID = BuildConfig.UNIFIED_PUSH_VARIANT_ID;
-  private final String SECRET = BuildConfig.UNIFIED_PUSH_SECRET;
-  private final String GCM_SENDER_ID = BuildConfig.UNIFIED_PUSH_GCM_SENDER_ID;
-  private final String UNIFIED_PUSH_URL = BuildConfig.UNIFIED_PUSH_URL;
+  
   private final ReactApplicationContext reactContext;
 
   public RNUnifiedPushModule(ReactApplicationContext reactContext) {
@@ -43,10 +39,10 @@ public class RNUnifiedPushModule extends ReactContextBaseJavaModule {
       ReadableMap config, final Callback successCallback, final Callback cancelCallback) {
 
     RegistrarManager.config("register", AeroGearFCMPushConfiguration.class)
-        .setPushServerURI(URI.create(UNIFIED_PUSH_URL))
-        .setSenderId(GCM_SENDER_ID)
-        .setVariantID(VARIANT_ID)
-        .setSecret(SECRET)
+        .setPushServerURI(URI.create(config.getString("url")))
+        .setSenderId(config.getString("senderId"))
+        .setVariantID(config.getString("variantId"))
+        .setSecret(config.getString("secret"))
         .setAlias(config.getString("alias"))
         .asRegistrar();
 
