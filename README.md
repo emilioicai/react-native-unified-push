@@ -1,44 +1,54 @@
-
 # react-native-unified-push
+
+RNUnifiedPush simplifies the usage of Unified Push Server (https://aerogear.org/push/) in React Native apps. It enables an app to subscribe and receive Push Notifications sent from any Unified Push Server.
 
 ## Getting started
 
 `$ npm install react-native-unified-push --save`
 
-### Mostly automatic installation
+### Linking the library
 
 `$ react-native link react-native-unified-push`
 
-### Manual installation
+### Configure on Android
 
+1. Add the following lines to `android/build.gradle` inside `dependencies`:
+    classpath 'com.google.gms:google-services:3.0.0'
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.3.0'
 
-#### iOS
+2. Add the following lines to `android/app/build.gradle` inside `dependencies`:
+    compile 'org.jboss.aerogear:aerogear-android-core:3.0.0'
+    compile 'org.jboss.aerogear:aerogear-android-pipe:3.0.0'
+    compile 'org.jboss.aerogear:aerogear-android-push:4.0.1'
 
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-unified-push` and add `RNUnifiedPush.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNUnifiedPush.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
+3. Append the following line to `android/app/build.gradle`:
+    apply plugin: 'com.google.gms.google-services'
 
-#### Android
+4. Add your google-services.json file to `android/app/` (how to get your google-services.json: https://support.google.com/firebase/answer/7015592)
 
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNUnifiedPushPackage;` to the imports at the top of the file
-  - Add `new RNUnifiedPushPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-unified-push'
-  	project(':react-native-unified-push').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-unified-push/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-unified-push')
-  	```
 
 ## Usage
-```javascript
-import RNUnifiedPush from 'react-native-unified-push';
 
-// TODO: What to do with the module?
-RNUnifiedPush;
+Use the init method to subscribe to a UPS and enable the app to start receiving Push Notifications from that server:
+
+```javascript
+  import RNUnifiedPush from 'react-native-unified-push';
+
+  ...
+
+  RNUnifiedPush.init(
+  { 
+    alias: '<id for this device>' ,
+    url: '<url for your UPS server>',
+    senderId: '<your sender id from UPS>',
+    variantId: '<variant id for your app in UPS>',
+    secret: '<variant secret for your app in UPS>'
+  },
+  () => {
+    //success callback
+  },
+  (err) => {
+    //error callback
+  }
+);
 ```
-  
