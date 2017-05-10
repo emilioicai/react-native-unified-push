@@ -1,6 +1,6 @@
 # react-native-unified-push
 
-RNUnifiedPush simplifies the usage of Unified Push Server (https://aerogear.org/push/) in React Native apps. It enables an app to subscribe and receive Push Notifications sent from any Unified Push Server.
+RNUnifiedPush simplifies the usage of Unified Push Server (https://aerogear.org/push/) in React Native apps. It enables an app to subscribe and receive Push Notifications sent from any Unified Push Server. At the moment only Android is supported.
 
 ## Getting started
 
