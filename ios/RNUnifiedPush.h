@@ -5,7 +5,6 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
-#import <AeroGearPush/AeroGearPush-Swift.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
