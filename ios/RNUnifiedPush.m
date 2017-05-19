@@ -18,25 +18,25 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(init:(NSString *)name location:(NSString *)location)
+RCT_EXPORT_METHOD(init:(NSDictionary *)details successCallback:(RCTResponseSenderBlock)successCallback errorCallback:(RCTResponseSenderBlock)errorCallback)
 {
     DeviceRegistration *registration =
     [[DeviceRegistration alloc] initWithServerURL:
-     [NSURL URLWithString:@"<URL FROM UPS>"]];
+     [NSURL URLWithString:[RCTConvert NSString:details[@"url"]]]];
     
     [registration registerWithClientInfo:^(id clientInfo) {
         
         // apply the token, to identify this device
         [clientInfo setDeviceToken:curDeviceToken];
         
-        [clientInfo setVariantID:@"<VARIANT ID FROM UPS>"];
-        [clientInfo setVariantSecret:@"<VARIANT SECRET FROM UPS>"];
+        [clientInfo setVariantID:[RCTConvert NSString:details[@"variantId"]]];
+        [clientInfo setVariantSecret:[RCTConvert NSString:details[@"secret"]]];
         
     } success:^() {
-        NSLog(@"UPS registration worked");
+        successCallback(@"UPS registration worked");
         
     } failure:^(NSError *error) {
-        NSLog(@"UPS registration Error: %@", error);
+        errorCallback(@"UPS registration Error: %@", error);
     }];
 
 }
