@@ -9,6 +9,9 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.github.hierynomus.license" version "0.14.0"
+}
 apply plugin: 'com.android.library'
 
 android {
@@ -37,3 +40,8 @@ dependencies {
     compile 'com.facebook.react:react-native:+'
 }
 
+
+license {
+    header rootProject.file('../codequality/HEADER')
+    strictCheck true
+}
