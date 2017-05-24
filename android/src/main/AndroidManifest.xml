@@ -1,9 +1,9 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.reactlibrary">
-
+	  <application>
   <meta-data android:name="DEFAULT_MESSAGE_HANDLER_KEY"
         android:value="com.reactlibrary.reactnative.ReactNativeMessageHandler" />
-
+</application>
 </manifest>
   
